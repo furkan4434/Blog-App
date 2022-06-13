@@ -1,3 +1,4 @@
+from tkinter import CASCADE
 from django.db import models
 from ckeditor.fields import RichTextField
 
@@ -15,7 +16,7 @@ class Post(models.Model):
     description = RichTextField()
     summary = models.TextField(null=True, blank=True)
     date_created = models.DateField(auto_now_add=True)
-    category = models.ManyToManyField(Category,null=True, blank=True)
+    category = models.ForeignKey(Category,null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

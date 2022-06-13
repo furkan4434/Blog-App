@@ -18,7 +18,7 @@ def sport(request):
 def healtyEating(request):
     posts = Post.objects.filter(category__categoryName = "Healthy eating")
     
-    context = {'navbar':'HealthyEating','posts':posts}
+    context = {'navbar':'Healthy eating','posts':posts}
     return render(request, 'post/sport.html', context)
 
 def fashion(request):
@@ -36,8 +36,10 @@ def recipes(request):
 def blog_details(request, pk):
 
     blog_detail = Post.objects.get(id=pk)
-
-    context = {'navbar':"blog_details", 'posts':blog_detail}
+    navbar = blog_detail.category
+    
+    
+    context = {'navbar':f'{navbar}', 'posts':blog_detail}
 
     return render(request, 'post/blog_details.html', context)
 
